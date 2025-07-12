@@ -91,7 +91,7 @@ const LoginPage = () => {
         />
         <Button disabled={loading} type="submit" className='w-full'>{loading ? <Loading/> : "Login"}</Button>
       </form>
-        <p className='text-center text-sm'> Don't have an account? <a href="/register" className='text-blue-600'>Register</a></p>
+        <p className='text-center text-sm'> Don&#39;t have an account? <a href="/register" className='text-blue-600'>Register</a></p>
      </Form>
       </div>
     </div>

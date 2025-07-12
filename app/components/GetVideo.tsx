@@ -15,7 +15,7 @@ const GetVideo =  () => {
     try {
       const data = await apiClient.getVideos() as IVideo[];
       if(data.length > 0){
-        const filteredVideos = data.filter((item)=> item.userId?.toString() !== session?.user?.id);
+        const filteredVideos = data.filter((item)=> item.userId?.toString() === session?.user?.id);
         setVideo(filteredVideos);
       }
     } catch (error) {
