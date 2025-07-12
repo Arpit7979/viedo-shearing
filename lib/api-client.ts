@@ -1,3 +1,4 @@
+import { createVideoResponse } from "@/app/components/VideoUploadForm";
 import { IVideo } from "@/Models/Video";
 
 export type videoFormData = Omit<IVideo, "_id">
@@ -26,7 +27,7 @@ class ApiClient {
       body: body ? JSON.stringify(body) : undefined,
     })
 
-    return response.json()
+    return response.json() as Promise<T>;
   }
 
   async getVideos(){
@@ -34,7 +35,7 @@ class ApiClient {
   }
 
   async createVideo(videoData: videoFormData){
-    return this.fetch("/auth/video",{
+    return this.fetch<createVideoResponse>("/auth/video",{
       method:"POST",
       body: videoData,
     })

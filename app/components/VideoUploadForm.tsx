@@ -23,6 +23,12 @@ import { apiClient } from '@/lib/api-client'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react';
 import mongoose from "mongoose";
+import { IVideo } from '@/Models/Video'
+
+export type createVideoResponse = {
+  newVideo: IVideo
+} | { error: string }
+
 
 const formSchema = z.object({
   title: z.string().min(2, "Title must be at least 2 characters long"),
@@ -96,7 +102,7 @@ const VideoUploadForm = () => {
   async function onSubmit(value: z.infer<typeof formSchema>) {
     setLoading(true);
     try {
-      const data = await apiClient.createVideo({
+      const data: createVideoResponse = await apiClient.createVideo({
         title: value.title,
         description: value.description,
         videoUrl: uploadedFile?.url || "",
@@ -107,7 +113,7 @@ const VideoUploadForm = () => {
         setError("Failed to upload video. Please try again.");
         return;
       }
-      if(data.error){
+      if("error" in data){
         setError(data.error);
         return;
       }else{

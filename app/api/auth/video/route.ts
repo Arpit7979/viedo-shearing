@@ -45,7 +45,7 @@ export async function POST(request:NextRequest){
         quality: body?.transformation?.quality ?? 100,
       }
     }
-    const newVideo = await Video.create(videoOptions);
+    const newVideo: IVideo = await Video.create(videoOptions);
 
     return NextResponse.json(newVideo, {status: 201});
   } catch (error) {
