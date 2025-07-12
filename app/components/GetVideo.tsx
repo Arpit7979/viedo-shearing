@@ -10,6 +10,7 @@ const GetVideo =  () => {
   const [video, setVideo] = useState<IVideo[]>([]);
   const { data: session } = useSession();
   
+  useEffect(()=>{
   const allVideos = async()=>{
     try {
       const data = await apiClient.getVideos() as IVideo[];
@@ -22,9 +23,8 @@ const GetVideo =  () => {
     }
     
   }
-  useEffect(()=>{
     allVideos();
-  },[]);
+  },[session]);
   
   if (!session) {
     return <div className="text-center h-screen font-bold md:text-4xl text-2xl flex items-center justify-center text-slate-700">Please login to view videos</div>;

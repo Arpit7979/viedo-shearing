@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import Loading from '../components/Loading';
-import { set } from "mongoose";
 
 const formSchema = z.object({
   email: z.string().email("Invalid email address"),
